@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - E-commerce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .product-container {
+            background-color: #fff;
+            width: 350px;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-details {
+            margin-top: 16px;
+            text-align: left;
+        }
+
+        .product-details h2 {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .product-details p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #d32f2f;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .add-to-cart-button {
+            background-color: #f8c300;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="productList"></div>
+
+    <script>
+        // Dados dos produtos
+        const products = [
+            {
+                name: 'Smartphone XYZ',
+                description: 'O Smartphone XYZ possui câmera de 64MP, tela de 6.5" e bateria de longa duração.',
+                price: '1499.99',
+                imageUrl: 'https://via.placeholder.com/300x300'
+            },
+            {
+                name: 'Notebook ABC',
+                description: 'O Notebook ABC é perfeito para trabalho e estudos com desempenho e design incríveis.',
+                price: '4999.99',
+                imageUrl: 'https://via.placeholder.com/300x300'
+            },
+            {
+                name: 'Fone de Ouvido Bluetooth',
+                description: 'Fones de ouvido com tecnologia Bluetooth e bateria de longa duração para um som imersivo.',
+                price: '399.99',
+                imageUrl: 'https://via.placeholder.com/300x300'
+            },
+            {
+                name: 'placa de video',
+                description:'roda bem os jogos em 4k',
+                price: '2000',
+                imageUrl: 'placa-de-video-galax-nvidia-geforce-rtx-4060-1-click-oc-2x-8gb-gddr6-dlss-ray-tracing-46nsl8md8loc_175397.webp'
+            }
+        ];
+
+        // Função para criar e adicionar o produto ao HTML
+        function addProductToPage(product) {
+            const productContainer = document.createElement('div');
+            productContainer.classList.add('product-container');
+
+            // Imagem do produto
+            const productImage = document.createElement('div');
+            productImage.classList.add('product-image');
+            const image = document.createElement('img');
+            image.src = product.imageUrl;
+            image.alt = product.name;
+            productImage.appendChild(image);
+
+            // Detalhes do produto
+            const productDetails = document.createElement('div');
+            productDetails.classList.add('product-details');
+            const title = document.createElement('h2');
+            title.textContent = product.name;
+            const description = document.createElement('p');
+            description.textContent = product.description;
+            const price = document.createElement('div');
+            price.classList.add('price');
+            price.textContent = 'R$ ' + parseFloat(product.price).toFixed(2);
+            const addToCartButton = document.createElement('button');
+            addToCartButton.classList.add('add-to-cart-button');
+            addToCartButton.textContent = 'Adicionar ao Carrinho';
+            addToCartButton.onclick = function() {
+                alert(product.name + ' foi adicionado ao carrinho!');
+            };
+
+            // Adiciona os elementos ao container do produto
+            productDetails.appendChild(title);
+            productDetails.appendChild(description);
+            productDetails.appendChild(price);
+            productDetails.appendChild(addToCartButton);
+
+            productContainer.appendChild(productImage);
+            productContainer.appendChild(productDetails);
+
+            // Adiciona o produto na lista
+            document.getElementById('productList').appendChild(productContainer);
+        }
+
+        // Adiciona todos os produtos ao HTML
+        products.forEach(product => {
+            addProductToPage(product);
+        });
+    </script>
+
+</body>
+</html>
